@@ -13,14 +13,21 @@ configs_dir = os.path.join(current_dir, 'configs')
 # Set the project to be investigated:
 project_name = 'hx-data-production'
 
+# See if the project exists in the database or not
+project_id = get_existing_google_cloud_project_id(configs_dir, project_name)
+if project_id:
+    print('EXISTS')
+else:
+    print('Needs adding to Db')
+    project_id = add_existing_google_cloud_project_id(configs_dir, project_name)
+
 # Get the existing datasets:
 project_datasets = get_project_datasets(project_name)
 
-
+# Cycle round the datasets and add detail to the database:
 for project_dataset in project_datasets:
-    print("************************ START *********************")
-    print("************************ DATASET INFO *********************")
-    print('The dataset is: {}'.format(get_dataset_name(project_dataset.dataset_id)))
+
+
 
     dataset_name = get_dataset_name(project_dataset.dataset_id)
     # print(type(dataset_name))
@@ -72,9 +79,3 @@ for project_dataset in project_datasets:
 
     print("************************ END *********************")
 
-    project_id = get_exisiting_google_cloud_project_id(configs_dir, project_name)
-    print(project_id)
-    if project_id:
-        print('EXISTS')
-    else:
-        print('Needs adding to Db')
