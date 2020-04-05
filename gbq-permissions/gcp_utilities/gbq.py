@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 from google.cloud import bigquery
 
-from utilities.utility_functions import dictionary_key_exists
+from .utilities.utility_functions import dictionary_key_exists
 
 
 def create_google_client_connection(project):
@@ -16,7 +16,6 @@ def create_google_client_connection(project):
 def get_project_datasets(gcp_name):
     gbq_connection = create_google_client_connection(gcp_name)
     datasets = list(gbq_connection.list_datasets())  # Make an API request.
-    project = gbq_connection.project
 
     if datasets:
         return datasets
@@ -25,12 +24,13 @@ def get_project_datasets(gcp_name):
 
 
 def get_dataset_name(dataset_data):
-    return dataset_data.encode('ascii', 'ignore')
+    return dataset_data
 
 
 def get_datasets_information(gcp_name, gbq_dataset_name):
     gbq_connection = create_google_client_connection(gcp_name)
     dataset_object = gbq_connection.get_dataset(gbq_dataset_name)
+    print(dataset_object)
     return dataset_object.__dict__
 
 

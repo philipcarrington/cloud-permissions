@@ -1,20 +1,30 @@
-from __future__ import absolute_import, division, print_function
 
-import mysql.connector
-
+import os
 from gcp_utilities.gbq import *
-from mysq_db_manager.python_mysql_connect import *
+from mysql_db_manager.python_mysql_existing import *
 
 
+# Start setting up the relative paths:
+# Current Dir:
+current_dir = os.path.dirname(__file__)
+# Config files location:
+configs_dir = os.path.join(current_dir, 'configs')
 
+# Set the project to be investigated:
 project_name = 'hx-data-production'
+
+# Get the existing datasets:
 project_datasets = get_project_datasets(project_name)
+
+
 for project_dataset in project_datasets:
     print("************************ START *********************")
     print("************************ DATASET INFO *********************")
     print('The dataset is: {}'.format(get_dataset_name(project_dataset.dataset_id)))
 
     dataset_name = get_dataset_name(project_dataset.dataset_id)
+    # print(type(dataset_name))
+    # print(type(dataset_name.decode('utf-8')))
     dataset_info = get_datasets_information(project_name, dataset_name)
     dataset_resource_type = get_dataset_resource_type_str(dataset_info)
     dataset_project = get_dataset_project_str(dataset_info)
@@ -62,3 +72,9 @@ for project_dataset in project_datasets:
 
     print("************************ END *********************")
 
+    project_id = get_exisiting_google_cloud_project_id(configs_dir, project_name)
+    print(project_id)
+    if project_id:
+        print('EXISTS')
+    else:
+        print('Needs adding to Db')

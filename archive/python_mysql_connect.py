@@ -1,5 +1,5 @@
 from mysql.connector import MySQLConnection, Error
-from python_mysql_dbconfig import read_db_config
+from .python_mysql_dbconfig import read_db_config
 
 
 def connect():
@@ -19,10 +19,10 @@ def connect():
     except Error as error:
         print(error)
 
-    finally:
-        if conn is not None and conn.is_connected():
-            conn.close()
-            print('Connection closed.')
+    #finally:
+    #    if conn is not None and conn.is_connected():
+    #        conn.close()
+    #        print('Connection closed.')
 
 
 if __name__ == '__main__':

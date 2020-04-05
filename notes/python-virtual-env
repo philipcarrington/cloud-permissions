@@ -1,0 +1,8 @@
+ -- Create the ENV
+ python3 -m venv cloud-permissions-env
+
+ -- Activate the ENV:
+source cloud-permissions-env/bin/activate
+
+-- Deactivate the ENV:
+deactivate

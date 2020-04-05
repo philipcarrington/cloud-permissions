@@ -1,3 +1,2 @@
 google-cloud-bigquery
-MySQL-python
-configparser
+mysql-connector
