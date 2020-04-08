@@ -54,10 +54,30 @@ for project_dataset in project_datasets:
     else:
         db_dataset_id = add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id)
 
-    print(db_dataset_id)
-
-    print("Iterate through the access list:")
+    # Get existing access groups:
     special_groups, group_groups, user_groups, views = process_dataset_access_list(dataset_access_list)
+
+    # Load them into the database
+    print(type(special_groups))
+    if special_groups:
+        existing_dataset_permission_group_type = 'specialGroup'
+        for accessee, permission in special_groups.items():
+            db_dataset_permission_id = get_existing_google_cloud_dataset_id(
+                configs_dir,
+                db_dataset_id,
+                permission,
+                accessee
+            )
+            if db_dataset_permission_id:
+                print('permission entry exists')
+            else:
+                add_dataset_permission_id(configs_dir, db_dataset_id, permission, accessee)
+
+            db_dataset_permission_id = get_existing_google_cloud_dataset_id(configs_dir,
+                                                                            db_dataset_id,
+                                                                            existing_dataset_permission_group_type,
+                                                                            permission, accessee)
+
     print('Special Groups: {}'.format(special_groups))
     print('Group Groups: {}'.format(group_groups))
     print('User Groups: {}'.format(user_groups))

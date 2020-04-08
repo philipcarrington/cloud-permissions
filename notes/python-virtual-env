@@ -6,3 +6,12 @@ source cloud-permissions-env/bin/activate
 
 -- Deactivate the ENV:
 deactivate
+
+
+sudo pip install virtualenv
+
+#Dataflow requires python 3.7
+virtualenv -p python3 venv
+
+source venv/bin/activate
+pip install apache-beam[gcp]
