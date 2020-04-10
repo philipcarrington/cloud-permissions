@@ -49,39 +49,91 @@ for project_dataset in project_datasets:
     # Get the database dataset id:
     db_dataset_id = get_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id)
     if db_dataset_id:
-        print('DATASET EXISTS')
-        print(db_dataset_id)
+        print('++++++++++++++++++++++++ DATASET EXISTS +++++++++++++++++++++++++++++++++')
     else:
         db_dataset_id = add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id)
+
+    print(db_dataset_id)
 
     # Get existing access groups:
     special_groups, group_groups, user_groups, views = process_dataset_access_list(dataset_access_list)
 
     # Load them into the database
-    print(type(special_groups))
     if special_groups:
         existing_dataset_permission_group_type = 'specialGroup'
         for accessee, permission in special_groups.items():
-            db_dataset_permission_id = get_existing_google_cloud_dataset_id(
+            db_dataset_permission_id = get_existing_dataset_permission_id(
                 configs_dir,
                 db_dataset_id,
+                existing_dataset_permission_group_type,
                 permission,
                 accessee
             )
             if db_dataset_permission_id:
-                print('permission entry exists')
+                print('************ {} Permission exists ************'.format(existing_dataset_permission_group_type))
             else:
-                add_dataset_permission_id(configs_dir, db_dataset_id, permission, accessee)
+                db_dataset_permission_id = add_dataset_permission_id(configs_dir, db_dataset_id,
+                                                                     existing_dataset_permission_group_type,
+                                                                     permission, accessee)
+            print('************ Permission ID: {} ************'.format(existing_dataset_permission_group_type))
+            print(db_dataset_permission_id)
 
-            db_dataset_permission_id = get_existing_google_cloud_dataset_id(configs_dir,
-                                                                            db_dataset_id,
-                                                                            existing_dataset_permission_group_type,
-                                                                            permission, accessee)
+    if group_groups:
+        existing_dataset_permission_group_type = 'groupByEmail'
+        for accessee, permission in special_groups.items():
+            db_dataset_permission_id = get_existing_dataset_permission_id(
+                configs_dir,
+                db_dataset_id,
+                existing_dataset_permission_group_type,
+                permission,
+                accessee
+            )
+            if db_dataset_permission_id:
+                print('************ {} Permission exists ************'.format(existing_dataset_permission_group_type))
+            else:
+                db_dataset_permission_id = add_dataset_permission_id(configs_dir, db_dataset_id,
+                                                                     existing_dataset_permission_group_type,
+                                                                     permission, accessee)
+            print('************ Permission ID: {} ************'.format(existing_dataset_permission_group_type))
+            print(db_dataset_permission_id)
 
-    print('Special Groups: {}'.format(special_groups))
-    print('Group Groups: {}'.format(group_groups))
-    print('User Groups: {}'.format(user_groups))
-    print('Views: {}'.format(views))
+    if user_groups:
+        existing_dataset_permission_group_type = 'userByEmail'
+        for accessee, permission in special_groups.items():
+            db_dataset_permission_id = get_existing_dataset_permission_id(
+                configs_dir,
+                db_dataset_id,
+                existing_dataset_permission_group_type,
+                permission,
+                accessee
+            )
+            if db_dataset_permission_id:
+                print('************ {} Permission exists ************'.format(existing_dataset_permission_group_type))
+            else:
+                db_dataset_permission_id = add_dataset_permission_id(configs_dir, db_dataset_id,
+                                                                     existing_dataset_permission_group_type,
+                                                                     permission, accessee)
+            print('************ Permission ID: {} ************'.format(existing_dataset_permission_group_type))
+            print(db_dataset_permission_id)
+
+    if views:
+        existing_dataset_permission_group_type = 'view'
+        for accessee, permission in special_groups.items():
+            db_dataset_permission_id = get_existing_dataset_permission_id(
+                configs_dir,
+                db_dataset_id,
+                existing_dataset_permission_group_type,
+                permission,
+                accessee
+            )
+            if db_dataset_permission_id:
+                print('************ {} Permission exists ************'.format(existing_dataset_permission_group_type))
+            else:
+                db_dataset_permission_id = add_dataset_permission_id(configs_dir, db_dataset_id,
+                                                                     existing_dataset_permission_group_type,
+                                                                     permission, accessee)
+            print('************ Permission ID: {} ************'.format(existing_dataset_permission_group_type))
+            print(db_dataset_permission_id)
 
     print("************************ END *********************")
 
