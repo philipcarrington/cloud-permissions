@@ -8,23 +8,30 @@ def get_existing_google_cloud_project_id(configs_dir, project_name):
         query_string = "select existing_google_cloud_project_id " \
                        "from existing_google_cloud_projects " \
                        "where existing_google_cloud_project_name = '{}'".format(project_name)
+        print(query_string)
 
+        # Set the connection properties:
         db_config = read_db_config(
             filename='{}/mysql_config.ini'.format(configs_dir)
         )
+
+        # Create the connection
         db_connection = MySQLConnection(**db_config)
+
         cursor = db_connection.cursor()
         cursor.execute(query_string)
+        records = cursor.fetchall()
 
-        row = cursor.fetchone()
-
-        if row[0]:
+        for row in records:
             return row[0]
-        else:
-            return None
 
     except Error as e:
-        print(e)
+        print("Error reading data from MySQL table", e)
+    finally:
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
 
 
 def get_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
@@ -42,14 +49,17 @@ def get_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
         cursor = db_connection.cursor()
         cursor.execute(query_string)
 
-        row = cursor.fetchone()
-        if row:
+        records = cursor.fetchall()
+        for row in records:
             return row[0]
-        else:
-            return None
 
     except Error as e:
         print('{} for SQL: {}'.format(e, query_string))
+    finally:
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
 
 
 def get_existing_dataset_permission_id(
@@ -64,25 +74,31 @@ def get_existing_dataset_permission_id(
         query_string = "select existing_dataset_permission_id " \
                        "from existing_dataset_permissions " \
                        "where existing_google_big_query_dataset_id = {}" \
-                       "    and existing_dataset_permission_group_type = '{}' " \
-                       "    and existing_dataset_permission_permission = '{}'" \
-                       "    and existing_dataset_permission_accessor = '{}'".format(db_dataset_id, permission_group_type, permission, accessee)
+                       " and existing_dataset_permission_group_type = '{}' " \
+                       " and existing_dataset_permission_permission = '{}'" \
+                       " and existing_dataset_permission_accessor = '{}'".format(db_dataset_id,
+                                                                                 permission_group_type, permission,
+                                                                                 accessee)
         print(query_string)
         db_config = read_db_config(
             filename='{}/mysql_config.ini'.format(configs_dir)
         )
         db_connection = MySQLConnection(**db_config)
+        db_connection.autocommit = True
         cursor = db_connection.cursor()
         cursor.execute(query_string)
 
-        row = cursor.fetchone()
-        if row:
+        records = cursor.fetchall()
+        for row in records:
             return row[0]
-        else:
-            return None
 
     except Error as e:
         print('{} for SQL: {}'.format(e, query_string))
+    finally:
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
 
 
 def add_existing_google_cloud_project_id(configs_dir, project_name):
@@ -109,8 +125,10 @@ def add_existing_google_cloud_project_id(configs_dir, project_name):
     except Error as e:
         print(e)
     finally:
-        cursor.close()
-        db_connection.close()
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
 
 
 def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
@@ -138,8 +156,10 @@ def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
     except Error as e:
         print(e)
     finally:
-        cursor.close()
-        db_connection.close()
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
 
 
 def add_dataset_permission_id(configs_dir, db_dataset_id, dataset_permission_group_type, permission, accessee):
@@ -170,5 +190,7 @@ def add_dataset_permission_id(configs_dir, db_dataset_id, dataset_permission_gro
     except Error as e:
         print(e)
     finally:
-        cursor.close()
-        db_connection.close()
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
