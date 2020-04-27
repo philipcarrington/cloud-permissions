@@ -62,7 +62,7 @@ def get_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
             print("MySQL connection is closed")
 
 
-def get_existing_dataset_permission_id(
+def get_existing_dataset_group_permission_id(
         configs_dir,
         db_dataset_id,
         permission_group_type,
@@ -79,6 +79,42 @@ def get_existing_dataset_permission_id(
                        " and existing_dataset_permission_accessor = '{}'".format(db_dataset_id,
                                                                                  permission_group_type, permission,
                                                                                  accessee)
+        print(query_string)
+        db_config = read_db_config(
+            filename='{}/mysql_config.ini'.format(configs_dir)
+        )
+        db_connection = MySQLConnection(**db_config)
+        db_connection.autocommit = True
+        cursor = db_connection.cursor()
+        cursor.execute(query_string)
+
+        records = cursor.fetchall()
+        for row in records:
+            return row[0]
+
+    except Error as e:
+        print('{} for SQL: {}'.format(e, query_string))
+    finally:
+        if db_connection.is_connected():
+            db_connection.close()
+            cursor.close()
+            print("MySQL connection is closed")
+
+def get_existing_dataset_view_permission_id(
+        configs_dir,
+        db_dataset_id,
+        view_dataset_data,
+        view_table_name_data
+):
+    try:
+        # Create the query string:
+        query_string = "select existing_dataset_permission_id " \
+                       "from existing_dataset_permissions " \
+                       "where existing_google_big_query_dataset_id = {}" \
+                       " and existing_dataset_permission_view_dataset = '{}' " \
+                       " and existing_dataset_permission_view_view_name = '{}'".format(db_dataset_id,
+                                                                                       view_dataset_data,
+                                                                                       view_table_name_data)
         print(query_string)
         db_config = read_db_config(
             filename='{}/mysql_config.ini'.format(configs_dir)
@@ -187,14 +223,16 @@ def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id, 
             print("MySQL connection is closed")
 
 
-def add_dataset_group_permission_id(configs_dir, db_dataset_id, dataset_permission_group_type, permission, accessee):
+def add_dataset_group_permission_id(configs_dir, db_dataset_id, dataset_permission_group_type,
+                                    permission, accessee, view_dataset, view_name):
     try:
         # Create the query string:
         query_string = "insert into existing_dataset_permissions(" \
                        "existing_google_big_query_dataset_id, existing_dataset_permission_group_type," \
-                       "existing_dataset_permission_permission, existing_dataset_permission_accessor) " \
-                       "values ({}, '{}', '{}', '{}' )".format(db_dataset_id, dataset_permission_group_type,
-                                                               permission, accessee)
+                       "existing_dataset_permission_permission, existing_dataset_permission_accessor," \
+                       "existing_dataset_permission_view_dataset, existing_dataset_permission_view_view_name) " \
+                       "values ({}, '{}', '{}', '{}', '{}', '{}')".format(db_dataset_id, dataset_permission_group_type,
+                                                                          permission, accessee, view_dataset, view_name)
 
         print(query_string)
         db_config = read_db_config(

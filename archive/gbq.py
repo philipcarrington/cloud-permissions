@@ -1,3 +1,8 @@
+import os
+from ..gbq_permissions/gcp_utilities.gbq import *
+from ../../gcp_utilities.gbq import *
+from mysql_db_manager.python_mysql_existing import *
+
 project_name = 'hx-data-production'
 project_datasets = get_project_datasets(project_name)
 for project_dataset in project_datasets:

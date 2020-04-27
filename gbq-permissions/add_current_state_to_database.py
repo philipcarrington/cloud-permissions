@@ -17,7 +17,7 @@ def add_group_dataset_permissions_to_database(group_permission_dataset_id, group
 
     if group_permission_data:
         for accessee, permission in group_permission_data.items():
-            db_dataset_permission_id = get_existing_dataset_permission_id(
+            db_dataset_permission_id = get_existing_dataset_group_permission_id(
                 configs_dir,
                 group_permission_dataset_id,
                 permission_group_name,
@@ -28,28 +28,24 @@ def add_group_dataset_permissions_to_database(group_permission_dataset_id, group
             if db_dataset_permission_id is None:
                 # Add it:
                 add_dataset_group_permission_id(configs_dir, group_permission_dataset_id, permission_group_name,
-                                                permission, accessee)
+                                                permission, accessee, None, None)
 
 
-def add_view_dataset_permissions_to_database(view_permission_dataset_id, view_permission_data):
+def add_view_dataset_permissions_to_database(view_permission_dataset_id, view_dataset_data, view_table_name_data):
     # Get the configs Dir Location
     configs_dir = get_configs_dir_location()
 
-    if view_permission_data:
-        for accessee, permission in view_permission_data.items():
-            db_dataset_permission_id = get_existing_dataset_permission_id(
-                configs_dir,
-                group_permission_dataset_id,
-                permission_group_name,
-                permission,
-                accessee
-            )
+    db_dataset_permission_id = get_existing_dataset_view_permission_id(
+        configs_dir,
+        view_permission_dataset_id,
+        view_dataset_data,
+        view_table_name_data
+    )
 
-            if db_dataset_permission_id is None:
-                # Add it:
-                add_dataset_group_permission_id(configs_dir, group_permission_dataset_id, permission_group_name,
-                                                permission, accessee)
-
+    if db_dataset_permission_id is None:
+        # Add it:
+        add_dataset_group_permission_id(configs_dir, view_permission_dataset_id, 'View',
+                                        'READER', None, view_dataset_data, view_table_name_data)
 
 
 def add_project_google_big_query_exisitng_to_database(in_project_name):
@@ -100,7 +96,7 @@ def add_project_google_big_query_exisitng_to_database(in_project_name):
             # print('++++++++++++++++++++++++ DATASET EXISTS +++++++++++++++++++++++++++++++++')
 
         print('The dataset database ID is :{}'.format(db_dataset_id))
-
+        print(dataset_access_list)
         # Get existing access groups:
         special_groups, group_by_email, user_by_email, views = process_dataset_access_list(dataset_access_list)
 
@@ -108,20 +104,20 @@ def add_project_google_big_query_exisitng_to_database(in_project_name):
         add_group_dataset_permissions_to_database(db_dataset_id, group_by_email, 'groupByEmail')
         add_group_dataset_permissions_to_database(db_dataset_id, user_by_email, 'userByEmail')
 
+        view_dataset = None
+        view_table_name = None
+
         if views:
-            print('********* There are VIEWS in dataset ID: {}, name: {} ***************'.format(db_dataset_id,
-                                                                                                 dataset_name))
-            print(views)
-            print(type(views))
-            for view in views.items():
-                print(view)
-                print(type(view))
-                view_dataset = view['datasetId']
-                view_name = view['tableId']
+            # print('********* There are VIEWS in dataset ID: {}, name: {} ***************'.format(db_dataset_id,
+            #                                                                                     dataset_name))
+            for key, value in views.items():
+                if key in 'datasetId':
+                    view_dataset = value
+                elif key in 'tableId':
+                    view_table_name = value
 
-                print('++++++ The view is: {}.{}'.format(view_dataset, view_name))
-
-        print("************************ END *********************")
+        add_view_dataset_permissions_to_database(db_dataset_id, view_dataset, view_table_name)
+        # print("************************ END *********************")
 
 
 #####################################################
