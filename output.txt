@@ -1,0 +1,114 @@
+select existing_google_cloud_project_id from existing_google_cloud_projects where existing_google_cloud_project_name = 'hx-data-production'
+MySQL connection is closed
+Dataset(DatasetReference('hx-data-production', 'aaron_stephens__user'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'aaron_stephens__user'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :1
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 1 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'aaron.stephens@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 1 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'nicola.monger@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 1 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'luke.silcocks@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'advertising'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'advertising'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :2
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'bi.data@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'pod-data-product@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'senior.management.data@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'shortbreaks.analysts@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'team-hxuk-web-data-science@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 2 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'airflow@hx-data-production.iam.gserviceaccount.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'advertising__historic'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'advertising__historic'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :3
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 3 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'projectWriters'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 3 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'projectOwners'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 3 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'projectReaders'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 3 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'pod-data-product@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 3 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'team-hxuk-web-data-science@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'advertising__reporting'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'advertising__reporting'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :4
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'projectWriters'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'projectOwners'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'projectReaders'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'bi.data@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'pod-data-product@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 4 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'team-hxuk-web-data-science@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'airflow_batch'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'airflow_batch'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :5
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 5 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'projectWriters'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 5 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'projectOwners'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 5 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'projectReaders'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 5 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'philip.carrington@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'airflow_batch__loading'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'airflow_batch__loading'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :6
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 6 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'projectWriters'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 6 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'projectOwners'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 6 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'projectReaders'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 6 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'philip.carrington@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'airflow_batch__reporting'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'airflow_batch__reporting'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :7
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 7 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'projectWriters'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 7 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'projectOwners'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 7 and existing_dataset_permission_group_type = 'specialGroup'  and existing_dataset_permission_permission = 'READER' and existing_dataset_permission_accessor = 'projectReaders'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 7 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'pod-data-product@holidayextras.com'
+MySQL connection is closed
+************************ END *********************
+Dataset(DatasetReference('hx-data-production', 'andy_castle__user'))
+select existing_google_big_query_dataset_id from existing_google_big_query_datasets where existing_google_big_query_dataset_name = 'andy_castle__user'    and existing_google_big_query_project_id = 1
+MySQL connection is closed
+The dataset database ID is :8
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 8 and existing_dataset_permission_group_type = 'groupByEmail'  and existing_dataset_permission_permission = 'OWNER' and existing_dataset_permission_accessor = 'data.foundations@holidayextras.com'
+MySQL connection is closed
+select existing_dataset_permission_id from existing_dataset_permissions where existing_google_big_query_dataset_id = 8 and existing_dataset_permission_group_type = 'userByEmail'  and existing_dataset_permission_permission = 'WRITER' and existing_dataset_permission_accessor = 'andrew.castle@holidayextras.com'
+MySQL connection is closed
+********* There are VIEWS in dataset ID: 8, name: andy_castle__user ***************
+{'projectId': 'hx-data-production', 'datasetId': 'jason_parks__user', 'tableId': 'responsys_mailable_uk_brand_with_tripapp_account'}
+<class 'dict'>
+('projectId', 'hx-data-production')
+<class 'tuple'>

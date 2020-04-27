@@ -131,12 +131,37 @@ def add_existing_google_cloud_project_id(configs_dir, project_name):
             print("MySQL connection is closed")
 
 
-def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
+def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id, dataset_self_link,
+                                         dataset_full_id, dataset_last_modified_time, dataset_creation_time,
+                                         dataset_location, dataset_etag, dataset_id):
     try:
         # Create the query string:
-        query_string = "insert into existing_google_big_query_datasets " \
-                       "(existing_google_big_query_project_id, existing_google_big_query_dataset_name) " \
-                       "values ({}, '{}')".format(project_id, dataset_name)
+        query_string = "INSERT INTO existing_google_big_query_datasets \
+                        ( \
+                            existing_google_big_query_dataset_name, \
+                            existing_google_big_query_project_id, \
+                            existing_google_big_query_dataset_self_link, \
+                            existing_google_big_query_dataset_full_id, \
+                            existing_google_big_query_dataset_last_modified_time, \
+                            existing_google_big_query_dataset_creation_time, \
+                            existing_google_big_query_dataset_location, \
+                            existing_google_big_query_dataset_etag, \
+                            existing_google_big_query_dataset_dataset_id \
+                        ) \
+                    VALUES \
+                        ( \
+                            '{}', \
+                            {}, \
+                            '{}', \
+                            '{}', \
+                            '{}', \
+                            '{}', \
+                            '{}', \
+                            '{}', \
+                            '{}' \
+                        )".format(dataset_name, project_id, dataset_self_link,
+                                  dataset_full_id, dataset_last_modified_time, dataset_creation_time,
+                                  dataset_location, dataset_etag, dataset_id)
 
         db_config = read_db_config(
             filename='{}/mysql_config.ini'.format(configs_dir)
@@ -162,7 +187,7 @@ def add_existing_google_cloud_dataset_id(configs_dir, dataset_name, project_id):
             print("MySQL connection is closed")
 
 
-def add_dataset_permission_id(configs_dir, db_dataset_id, dataset_permission_group_type, permission, accessee):
+def add_dataset_group_permission_id(configs_dir, db_dataset_id, dataset_permission_group_type, permission, accessee):
     try:
         # Create the query string:
         query_string = "insert into existing_dataset_permissions(" \
