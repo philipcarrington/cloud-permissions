@@ -1,0 +1,149 @@
+/*
+------------------------------------------------------------------------------------------------------------------------
+1) Get the organisations that are accessible from the current database"
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+1 a). Get the organisations:
+*/
+call get_organisations()
+go
+
+/*
+1 b). Get the temp Table
+*/
+select *
+from get_organisations_tmp
+go
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+2) If the organisation that you are after does not exist OR no results are returned ADD organisation to database:
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+2 a). Add the org
+*/
+call add_organisations(
+        'holidayextras.com',
+        'hxuk',
+        'Holiday Extras Limited',
+        'The UK distribution Company',
+        @out_organisation_id
+    )
+go
+select @out_organisation_id as fetched_organisation_id
+go
+
+/*
+2 b). RETURN to the home page
+*/
+
+
+/*
+2 c). Get the org data
+*/
+call get_organisations()
+go
+
+/*
+2 d). Get the temp Table
+*/
+select *
+from get_organisations_tmp
+go
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+3) If the folders that you are after does not exist OR no results are returned ADD folder to database:
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+3 a). See if the folder exists:
+*/
+call get_google_cloud_folder_id_by_uk(
+    1, --<in_organisation_id int>,
+    'None', --<in_google_cloud_folder_name varchar(45)>,
+    @out_google_cloud_folder_id,
+    @out_google_cloud_folder_id_message
+)
+go
+select @out_google_cloud_folder_id as fetched_google_cloud_folder_id,
+       @out_google_cloud_folder_id_message as out_message
+go
+
+/*
+3 b). Add the folder
+*/
+call add_google_cloud_folders(
+    'None' --in_google_cloud_folder_name varchar(45),
+    'ACTIVE', --in_google_cloud_lifecycle_state varchar(10),
+    1, --in_organisation_id int,
+    @out_google_cloud_folder_id-- out_google_cloud_folder_id int
+)
+go
+select @out_google_cloud_folder_id as google_cloud_folder_id
+go
+/*
+3 c). Get the folder ID
+*/
+call get_google_cloud_folder_id_by_uk(
+    1, --<in_organisation_id int>,
+    'None', --<in_google_cloud_folder_name varchar(45)>,
+    @out_google_cloud_folder_id,
+    @out_google_cloud_folder_id_message
+)
+go
+select @out_google_cloud_folder_id as fetched_google_cloud_folder_id,
+       @out_google_cloud_folder_id_message as out_message
+go
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+4) If the project that you are after does not exist OR no results are returned ADD folder to database:
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+/*
+4 a). See if the project exists:
+*/
+call get_google_cloud_project_id_by_uk(
+    'hx-data-production', -- <in_internal_project_name varchar(45)>,
+    1, -- <in_google_cloud_folder_id int>,
+    @out_google_cloud_project_id,
+    @out_google_cloud_project_id_message)
+go
+select @out_google_cloud_project_id as fetched_google_cloud_project_id,
+       @out_google_cloud_project_id_message as out_message
+go
+
+/*
+4 b). Add if it does not exist
+*/
+call add_google_cloud_projects(
+    '744350620057', -- in_google_cloud_project_id_actual varchar(45),
+    'hx-data-production', -- in_google_cloud_project_name varchar(45),
+    '744350620057', -- in_google_cloud_project_number varchar(45),
+    'hx-data-production', -- in_internal_project_name varchar(45),
+    @out_google_cloud_project_id -- out_google_cloud_project_id int
+)
+go
+select @out_google_cloud_project_id as fetched_google_cloud_project_id
+go
+
+/*
+4 c). See if the project exists:
+*/
+call get_google_cloud_project_id_by_uk(
+    'hx-data-production', -- <in_internal_project_name varchar(45)>,
+    1, -- <in_google_cloud_folder_id int>,
+    @out_google_cloud_project_id,
+    @out_google_cloud_project_id_message)
+go
+select @out_google_cloud_project_id as fetched_google_cloud_project_id,
+       @out_google_cloud_project_id_message as out_message
+go
+
