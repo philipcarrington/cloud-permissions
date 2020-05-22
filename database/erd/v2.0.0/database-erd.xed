@@ -1,0 +1,1150 @@
+<?xml version="1.0" encoding="UTF-8"?><Diagram version="1.0" type="MySQL" versionMajor="8" versionMinor="0" groupSchema="false" hide_inv="false">
+<Table id="0" name="organisations" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="1" name="organisation_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+<CP name="ZERO_FILL">YES</CP>
+</Column>
+<Column id="2" name="organisation_name" type="varchar" length="255" nulls="false"/>
+<Column id="3" name="organisation_short_description" type="varchar" length="500" nulls="true"/>
+<Column id="4" name="organisation_identifier" type="varchar" length="25" nulls="false"/>
+<Column id="5" name="organisation_email_domain" type="varchar" length="255" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="6" name="departments" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="7" name="department_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="8" name="department_name" type="varchar" length="255" nulls="false"/>
+<Column id="9" name="department_short_desc" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="10" name="teams" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="11" name="team_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="12" name="team_name" type="varchar" length="255" nulls="false"/>
+<Column id="13" name="team_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="14" name="organisation_department_teams" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="15" name="organisation_department_team_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="16" name="organisation_id" type="int" length="25" nulls="false"/>
+<Column id="17" name="department_id" type="int" length="25" nulls="false"/>
+<Column id="18" name="team_id" type="int" length="25" nulls="false"/>
+<Column id="19" name="organisation_department_team_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="20" name="employees" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="21" name="employee_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="22" name="given_name" type="varchar" length="200" nulls="false"/>
+<Column id="23" name="family_name" type="varchar" length="200" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="24" name="organisation_department_team_employees" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="25" name="organisation_department_team_employee_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="26" name="organisation_department_team_id" type="int" length="25" nulls="false"/>
+<Column id="27" name="employee_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="28" name="jobs" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="29" name="job_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="30" name="job_name" type="varchar" length="255" nulls="false"/>
+<Column id="31" name="job_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="32" name="employee_jobs" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="33" name="employee_job_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="34" name="employee_id" type="int" length="25" nulls="false"/>
+<Column id="35" name="job_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="36" name="groups" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="37" name="group_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="38" name="group_name" type="varchar" length="255" nulls="false"/>
+<Column id="39" name="group_short_description" type="varchar" length="500" nulls="true"/>
+<Column id="40" name="group_prefix" type="varchar" length="25" nulls="true"/>
+<Column id="41" name="group_suffix" type="varchar" length="25" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="42" name="employee_groups" schema="organisation_data" database="permissions_meta" background="16777165">
+<Column id="43" name="employee_group_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="44" name="employee_id" type="int" length="25" nulls="false"/>
+<Column id="45" name="group_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="46" name="google_cloud_resource_types" schema="google_cloud_meta" database="permissions_meta" background="13172680">
+<Column id="47" name="google_cloud_resource_type_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="48" name="google_cloud_resource_type_service" type="varchar" length="255" nulls="false"/>
+<Column id="49" name="google_cloud_resource_type_name" type="varchar" length="255" nulls="false"/>
+<Column id="50" name="google_cloud_resource_type_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="51" name="google_cloud_folders" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="52" name="google_cloud_folder_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="53" name="organisation_id" type="int" length="25" nulls="false"/>
+<Column id="54" name="google_cloud_folder_parent_folder_id" type="int" length="25" nulls="false">
+<CP name="DEFAULT_VALUE">0</CP>
+</Column>
+<Column id="55" name="google_cloud_folder_name" type="varchar" length="255" nulls="false"/>
+<Column id="56" name="google_cloud_folder_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="57" name="google_cloud_projects" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="58" name="google_cloud_project_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="59" name="google_cloud_folder_id" type="int" length="25" nulls="false">
+<CP name="ZERO_FILL">YES</CP>
+</Column>
+<Column id="60" name="google_cloud_project_name" type="varchar" length="255" nulls="false"/>
+<Column id="61" name="google_cloud_project_id_actual" type="varchar" length="25" nulls="true"/>
+<Column id="62" name="google_cloud_project_number" type="varchar" length="25" nulls="true"/>
+<Column id="63" name="google_cloud_project_short_description" type="varchar" length="25" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="64" name="google_cloud_regions" schema="google_cloud_meta" database="permissions_meta" background="13172680">
+<Column id="65" name="google_cloud_region_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="66" name="google_cloud_region_name" type="varchar" length="255" nulls="false"/>
+<Column id="67" name="google_cloud_region_zones" type="varchar" length="100" nulls="true"/>
+<Column id="68" name="google_cloud_region_location" type="varchar" length="100" nulls="true"/>
+<Column id="69" name="google_cloud_region_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="70" name="google_cloud_locations" schema="google_cloud_meta" database="permissions_meta" background="13172680">
+<Column id="71" name="google_cloud_location_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="72" name="google_cloud_region_id" type="int" length="25" nulls="false"/>
+<Column id="73" name="google_cloud_location_name" type="varchar" length="255" nulls="false"/>
+<Column id="74" name="google_cloud_location_short_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="75" name="google_cloud_roles" schema="google_cloud_meta" database="permissions_meta" background="13172680">
+<Column id="76" name="google_cloud_role_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="77" name="google_cloud_role_title" type="varchar" length="255" nulls="false"/>
+<Column id="78" name="google_cloud_role_role" type="varchar" length="255" nulls="false"/>
+<Column id="79" name="google_cloud_role_short_description" type="varchar" length="500" nulls="true"/>
+<Column id="80" name="google_cloud_role_permissions" type="varchar" length="500" nulls="true"/>
+<Column id="81" name="google_cloud_role_lowest_resource" type="varchar" length="255" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="82" name="google_cloud_service_accounts" schema="google_cloud_meta" database="permissions_meta" background="13158655">
+<Column id="83" name="google_cloud_service_account_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="84" name="google_cloud_service_account_email" type="varchar" length="255" nulls="false"/>
+<Column id="85" name="google_cloud_service_account_name" type="varchar" length="255" nulls="true"/>
+<Column id="86" name="google_cloud_service_account_status" type="smallint" length="25" nulls="false">
+<CP name="DEFAULT_VALUE">1</CP>
+</Column>
+<Column id="87" name="google_cloud_service_account_description" type="varchar" length="500" nulls="true"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="88" name="organisation_department_team_google_service_accounts" schema="organisation_google_cloud" database="permissions_meta" background="16777165">
+<Column id="89" name="organisation_department_team_google_service_account_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="90" name="organisation_department_team_id" type="int" length="25" nulls="false"/>
+<Column id="91" name="google_service_account_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="92" name="google_bigquery_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="93" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Column id="94" name="google_cloud_project_id" type="int" length="25" nulls="false"/>
+<Column id="95" name="google_cloud_location_id" type="int" length="25" nulls="false"/>
+<Column id="96" name="google_bigquery_dataset_name" type="varchar" length="255" nulls="false"/>
+<Column id="97" name="google_bigquery_dataset_short_description" type="varchar" length="500" nulls="true"/>
+<Column id="98" name="google_bigquery_dataset_default_table_expiration" type="smallint" length="25" nulls="false">
+<CP name="DEFAULT_VALUE">0</CP>
+</Column>
+<Column id="99" name="google_bigquery_dataset_default_partition_expiration" type="smallint" length="25" nulls="false">
+<CP name="DEFAULT_VALUE">0</CP>
+</Column>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="100" name="employee_group_resources" schema="organisation_google_cloud" database="permissions_meta" background="13172735">
+<Column id="101" name="employee_group_resource_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="102" name="google_cloud_resource_type_id" type="int" length="25" nulls="false"/>
+<Column id="103" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="104" name="employee_group_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="105" name="employee_job_resources" schema="organisation_google_cloud" database="permissions_meta" background="13172735">
+<Column id="106" name="employee_job_resource_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="107" name="google_cloud_resource_type_id" type="int" length="25" nulls="false"/>
+<Column id="108" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="109" name="employee_job_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="110" name="employee_resources" schema="organisation_google_cloud" database="permissions_meta" background="13172735">
+<Column id="111" name="employee_resource_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="112" name="google_cloud_resource_type_id" type="int" length="25" nulls="false"/>
+<Column id="113" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="114" name="employee_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="115" name="organisation_department_team_resources" schema="organisation_google_cloud" database="permissions_meta" background="13172735">
+<Column id="116" name="organisation_department_team_resource_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="117" name="google_cloud_resource_type_id" type="int" length="25" nulls="false"/>
+<Column id="118" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="119" name="organisation_department_team_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="120" name="google_cloud_service_account_resources" schema="organisation_google_cloud" database="permissions_meta" background="13172735">
+<Column id="121" name="service_account_resource_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="122" name="google_cloud_resource_type_id" type="int" length="25" nulls="false"/>
+<Column id="123" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="124" name="google_cloud_service_account_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="125" name="organisation_department_team_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="126" name="organisation_department_team_dataset_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="127" name="organisation_department_team_id" type="int" length="25" nulls="false"/>
+<Column id="128" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="129" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="130" name="service_account_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="131" name="service_account_dataset_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="132" name="service_account_id" type="int" length="25" nulls="false"/>
+<Column id="133" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="134" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="135" name="employee_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="136" name="employee_dataset_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="137" name="employee_id" type="int" length="25" nulls="false"/>
+<Column id="138" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="139" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="140" name="employee_job_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="141" name="employee_job_dataset_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="142" name="employee_job_id" type="int" length="25" nulls="false"/>
+<Column id="143" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="144" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Table id="145" name="employee_group_datasets" schema="organisation_google_cloud" database="permissions_meta" background="13158655">
+<Column id="146" name="employee_group_dataset_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
+<Column id="147" name="employee_group_id" type="int" length="25" nulls="false"/>
+<Column id="148" name="google_cloud_role_id" type="int" length="25" nulls="false"/>
+<Column id="149" name="google_bigquery_dataset_id" type="int" length="25" nulls="false"/>
+<Storage name="ValueCompression" value="false"/>
+<Storage name="DistributeRandom" value="false"/>
+<Storage name="NoLogging" value="false"/>
+<Storage name="WithCRCols" value="false"/>
+<Storage name="Charset" value=""/>
+<Storage name="Collation" value=""/>
+<Storage name="transferTable" value="false"/>
+<Storage name="db2zVolatile" value="false"/>
+<Storage name="db2zRestrictOnDrop" value="false"/>
+<Storage name="AppendMode" value="false"/>
+<Storage name="External" value="false"/>
+<Storage name="Engine" value=""/>
+</Table>
+<Relation id="150" name="fk_odo_c1_to_ododt_c2" cardinality="-2" identifying="true" nulls="false">
+<Option name="onDelete" class="String" value="NO ACTION"/>
+<FK>1</FK>
+<PK>16</PK>
+<Text/>
+</Relation>
+<Relation id="151" name="fk_odd_c1_to_ododt_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>7</FK>
+<PK>17</PK>
+<Text/>
+</Relation>
+<Relation id="152" name="fk_odt_c1_to_ododt_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>11</FK>
+<PK>18</PK>
+<Text/>
+</Relation>
+<Relation id="153" name="fk_ododt_c1_to_ododte_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>15</FK>
+<PK>26</PK>
+<Text/>
+</Relation>
+<Relation id="154" name="fk_ode_c1_to_ododte_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>21</FK>
+<PK>27</PK>
+<Text/>
+</Relation>
+<Relation id="155" name="fk_ode_c1_to_odej_c2" cardinality="1" identifying="true" nulls="false">
+<FK>21</FK>
+<PK>34</PK>
+<Text/>
+</Relation>
+<Relation id="156" name="fk_odj_c1_to_odej_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>29</FK>
+<PK>35</PK>
+<Text/>
+</Relation>
+<Relation id="157" name="fk_odg_c1_to_odeg_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>37</FK>
+<PK>45</PK>
+<Text/>
+</Relation>
+<Relation id="158" name="fk_ode_c1_to_odeg_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>21</FK>
+<PK>44</PK>
+<Text/>
+</Relation>
+<Relation id="159" name="fk_ogcgcf_c1_to_ogcgcp_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>52</FK>
+<PK>59</PK>
+<Text/>
+</Relation>
+<Relation id="160" name="fk_ogcgcf_c1_to_ogcgcf_c3" cardinality="-3" identifying="true" nulls="false">
+<FK>52</FK>
+<PK>54</PK>
+<Text/>
+</Relation>
+<Relation id="161" name="fk_odo_c1_to_ogcgcf_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>1</FK>
+<PK>53</PK>
+<Text/>
+</Relation>
+<Relation id="162" name="fk_gcmgcr_c1_to_gcmgcl_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>65</FK>
+<PK>72</PK>
+<Text/>
+</Relation>
+<Relation id="163" name="fk_ododt_c1_to_ogcodtgsa_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>15</FK>
+<PK>90</PK>
+<Text/>
+</Relation>
+<Relation id="164" name="fk_gcmgcsa_c1_to_ogcodtgsa_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>83</FK>
+<PK>91</PK>
+<Text/>
+</Relation>
+<Relation id="165" name="fk_ogcgcp_c1_to_ogcgbd_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>58</FK>
+<PK>94</PK>
+<Text/>
+</Relation>
+<Relation id="166" name="fk_gcmgcl_c1_to_ogcgbd_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>71</FK>
+<PK>95</PK>
+<Text/>
+</Relation>
+<Relation id="167" name="fk_odeg_c1_to_ogcegr_c4" cardinality="-2" identifying="true" nulls="false">
+<FK>43</FK>
+<PK>104</PK>
+<Text/>
+</Relation>
+<Relation id="168" name="fk_gcmgcr_c1_to_ogcegr_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>103</PK>
+<Text/>
+</Relation>
+<Relation id="169" name="fk_gcmgcrt_c1_to_ogcegr_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>47</FK>
+<PK>102</PK>
+<Text/>
+</Relation>
+<Relation id="170" name="fk_gcmgcrt_c1_to_ogcejr_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>47</FK>
+<PK>107</PK>
+<Text/>
+</Relation>
+<Relation id="171" name="fk_gcmgcr_c1_to_ogcejr_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>108</PK>
+<Text/>
+</Relation>
+<Relation id="172" name="fk_odej_c1_to_ogcejr_c4" cardinality="-2" identifying="true" nulls="false">
+<FK>33</FK>
+<PK>109</PK>
+<Text/>
+</Relation>
+<Relation id="173" name="fk_ode_c1_to_ogcer_c4" cardinality="-2" identifying="true" nulls="false">
+<FK>21</FK>
+<PK>114</PK>
+<Text/>
+</Relation>
+<Relation id="174" name="fk_gcmgcr_c1_to_ogcer_c3" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>113</PK>
+<Text/>
+</Relation>
+<Relation id="175" name="fk_gcmgcrt_c1_to_ogcer_c2" cardinality="-2" identifying="true" nulls="false">
+<FK>47</FK>
+<PK>112</PK>
+<Text/>
+</Relation>
+<Relation id="176" name="fk_ododt_c1_to_ogcodtr_c4" cardinality="-2" identifying="true" nulls="false">
+<FK>15</FK>
+<PK>119</PK>
+<Text/>
+</Relation>
+<Relation id="177" name="fk_gcmgcsa_c1_to_ogcgcsar_c4" cardinality="-2" identifying="true" nulls="false">
+<FK>83</FK>
+<PK>124</PK>
+<Text/>
+</Relation>
+<Relation id="178" name="REL_1" cardinality="-2" identifying="true" nulls="false">
+<FK>47</FK>
+<PK>117</PK>
+<Text/>
+</Relation>
+<Relation id="179" name="REL_2" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>118</PK>
+<Text/>
+</Relation>
+<Relation id="180" name="REL_3" cardinality="-2" identifying="true" nulls="false">
+<FK>47</FK>
+<PK>122</PK>
+<Text/>
+</Relation>
+<Relation id="181" name="REL_4" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>123</PK>
+<Text/>
+</Relation>
+<Relation id="182" name="REL_5" cardinality="-2" identifying="true" nulls="false">
+<FK>15</FK>
+<PK>127</PK>
+<Text/>
+</Relation>
+<Relation id="183" name="REL_6" cardinality="-2" identifying="true" nulls="false">
+<FK>93</FK>
+<PK>129</PK>
+<Text/>
+</Relation>
+<Relation id="184" name="REL_7" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>128</PK>
+<Text/>
+</Relation>
+<Relation id="185" name="REL_8" cardinality="-2" identifying="true" nulls="false">
+<FK>83</FK>
+<PK>132</PK>
+<Text/>
+</Relation>
+<Relation id="186" name="REL_9" cardinality="-2" identifying="true" nulls="false">
+<FK>93</FK>
+<PK>134</PK>
+<Text/>
+</Relation>
+<Relation id="187" name="REL_10" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>133</PK>
+<Text/>
+</Relation>
+<Relation id="188" name="REL_11" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>143</PK>
+<Text/>
+</Relation>
+<Relation id="189" name="REL_12" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>138</PK>
+<Text/>
+</Relation>
+<Relation id="190" name="REL_13" cardinality="-2" identifying="true" nulls="false">
+<FK>93</FK>
+<PK>139</PK>
+<Text/>
+</Relation>
+<Relation id="191" name="REL_14" cardinality="-2" identifying="true" nulls="false">
+<FK>93</FK>
+<PK>144</PK>
+<Text/>
+</Relation>
+<Relation id="192" name="REL_15" cardinality="-2" identifying="true" nulls="false">
+<FK>33</FK>
+<PK>142</PK>
+<Text/>
+</Relation>
+<Relation id="193" name="REL_16" cardinality="-2" identifying="true" nulls="false">
+<FK>21</FK>
+<PK>137</PK>
+<Text/>
+</Relation>
+<Relation id="194" name="REL_17" cardinality="-2" identifying="true" nulls="false">
+<FK>76</FK>
+<PK>148</PK>
+<Text/>
+</Relation>
+<Relation id="195" name="REL_18" cardinality="-2" identifying="true" nulls="false">
+<FK>43</FK>
+<PK>147</PK>
+<Text/>
+</Relation>
+<Relation id="196" name="REL_19" cardinality="-2" identifying="true" nulls="false">
+<FK>93</FK>
+<PK>149</PK>
+<Text/>
+</Relation>
+<Index table="0" name="uix_odo_c2" schema="organisation_data" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="2" sequence="0" ascending="true"/>
+</Index>
+<Index table="0" name="uix_odo_c4" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="4" sequence="0" ascending="true"/>
+</Index>
+<Index table="6" name="uix_odd_c2" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="8" sequence="0" ascending="true"/>
+</Index>
+<Index table="10" name="uix_odt_c2" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="12" sequence="0" ascending="false"/>
+</Index>
+<Index table="14" name="uix_ododt_c2c3c4" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="16" sequence="0" ascending="true"/>
+<IndexColumn id="17" sequence="1" ascending="true"/>
+<IndexColumn id="18" sequence="2" ascending="true"/>
+</Index>
+<Index table="20" name="uix_ode_c2c3" schema="organisation_data" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="22" sequence="0" ascending="true"/>
+<IndexColumn id="23" sequence="1" ascending="true"/>
+</Index>
+<Index table="24" name="uix_ododte_c2c3" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="26" sequence="0" ascending="true"/>
+<IndexColumn id="27" sequence="1" ascending="true"/>
+</Index>
+<Index table="28" name="uix_odj_c2" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="30" sequence="0" ascending="true"/>
+</Index>
+<Index table="32" name="uix_odejc2c3" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="34" sequence="0" ascending="true"/>
+<IndexColumn id="35" sequence="1" ascending="true"/>
+</Index>
+<Index table="36" name="uix_odg_c2" schema="organisation_data" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="38" sequence="0" ascending="true"/>
+</Index>
+<Index table="42" name="uix_odeg_c2c3" schema="organisation_data" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="44" sequence="0" ascending="true"/>
+<IndexColumn id="45" sequence="1" ascending="true"/>
+</Index>
+<Index table="46" name="uix_gcmrt_c2c3" schema="google_cloud_meta" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="48" sequence="0" ascending="true"/>
+<IndexColumn id="49" sequence="1" ascending="true"/>
+</Index>
+<Index table="57" name="uix_ogcgcp_c3" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="60" sequence="0" ascending="true"/>
+</Index>
+<Index table="64" name="uix_gcmgcr_c2" schema="google_cloud_meta" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="66" sequence="0" ascending="true"/>
+</Index>
+<Index table="82" name="uix_gcmgcsa_c2" schema="google_cloud_meta" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="84" sequence="0" ascending="true"/>
+</Index>
+<Index table="88" name="uix_ogcodtgsa_c2c3" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="90" sequence="0" ascending="true"/>
+<IndexColumn id="91" sequence="1" ascending="true"/>
+</Index>
+<Index table="92" name="uix_ogcgbd_c2c4" schema="organisation_google_cloud" database="">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="94" sequence="0" ascending="true"/>
+<IndexColumn id="96" sequence="1" ascending="true"/>
+</Index>
+<Index table="100" name="uix_ogcegr_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="102" sequence="0" ascending="true"/>
+<IndexColumn id="103" sequence="1" ascending="true"/>
+<IndexColumn id="104" sequence="2" ascending="true"/>
+</Index>
+<Index table="105" name="uix_ogcegr_c2c3c4_1" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="107" sequence="0" ascending="true"/>
+<IndexColumn id="108" sequence="1" ascending="true"/>
+<IndexColumn id="109" sequence="2" ascending="true"/>
+</Index>
+<Index table="110" name="uix_ogcegr_c2c3c4_2" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="112" sequence="0" ascending="true"/>
+<IndexColumn id="113" sequence="1" ascending="true"/>
+<IndexColumn id="114" sequence="2" ascending="true"/>
+</Index>
+<Index table="115" name="uix_ogcodtr_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="117" sequence="0" ascending="true"/>
+<IndexColumn id="118" sequence="1" ascending="true"/>
+<IndexColumn id="119" sequence="2" ascending="true"/>
+</Index>
+<Index table="120" name="uix_ogcsar_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="type" class="String" value=""/>
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="122" sequence="0" ascending="true"/>
+<IndexColumn id="123" sequence="1" ascending="true"/>
+<IndexColumn id="124" sequence="2" ascending="true"/>
+</Index>
+<Index table="125" name="uix_ogcodtd_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="127" sequence="0" ascending="true"/>
+<IndexColumn id="128" sequence="1" ascending="true"/>
+<IndexColumn id="129" sequence="2" ascending="true"/>
+</Index>
+<Index table="130" name="uix_ogcsad_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="132" sequence="0" ascending="true"/>
+<IndexColumn id="133" sequence="1" ascending="true"/>
+<IndexColumn id="134" sequence="2" ascending="true"/>
+</Index>
+<Index table="135" name="uix_ogced_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="137" sequence="0" ascending="true"/>
+<IndexColumn id="138" sequence="1" ascending="true"/>
+<IndexColumn id="139" sequence="2" ascending="true"/>
+</Index>
+<Index table="140" name="uix_ogcejd_c2c3c4_2" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="142" sequence="0" ascending="true"/>
+<IndexColumn id="143" sequence="1" ascending="true"/>
+<IndexColumn id="144" sequence="2" ascending="true"/>
+</Index>
+<Index table="145" name="uix_ogcegd_c2c3c4" schema="organisation_google_cloud" database="permissions_meta">
+<Option name="index.unique" class="String" value="UNIQUE"/>
+<IndexColumn id="147" sequence="0" ascending="true"/>
+<IndexColumn id="148" sequence="1" ascending="true"/>
+<IndexColumn id="149" sequence="2" ascending="true"/>
+</Index>
+<Constraint table="0" name="pk_odo_c1" type="PrimKey">
+<ConstraintColumn id="1"/>
+</Constraint>
+<Constraint table="6" name="pk_odd_c1" type="PrimKey">
+<ConstraintColumn id="7"/>
+</Constraint>
+<Constraint table="10" name="pk_odt_c1" type="PrimKey">
+<ConstraintColumn id="11"/>
+</Constraint>
+<Constraint table="14" name="pk_ododt_c1" type="PrimKey">
+<ConstraintColumn id="15"/>
+</Constraint>
+<Constraint table="20" name="pk_ode_c1" type="PrimKey">
+<ConstraintColumn id="21"/>
+</Constraint>
+<Constraint table="24" name="pk_ododte_c1" type="PrimKey">
+<ConstraintColumn id="25"/>
+</Constraint>
+<Constraint table="28" name="pk_odj_c1" type="PrimKey">
+<ConstraintColumn id="29"/>
+</Constraint>
+<Constraint table="32" name="pk_odej_c1" type="PrimKey">
+<ConstraintColumn id="33"/>
+</Constraint>
+<Constraint table="36" name="pk_odg_c1" type="PrimKey">
+<ConstraintColumn id="37"/>
+</Constraint>
+<Constraint table="42" name="pk_odeg_c1" type="PrimKey">
+<ConstraintColumn id="43"/>
+</Constraint>
+<Constraint table="46" name="pk_gcmrt_c1" type="PrimKey">
+<ConstraintColumn id="47"/>
+</Constraint>
+<Constraint table="51" name="pk_ogcgcf_c1" type="PrimKey">
+<ConstraintColumn id="52"/>
+</Constraint>
+<Constraint table="57" name="pk_ogcgcp_c1" type="PrimKey">
+<ConstraintColumn id="58"/>
+</Constraint>
+<Constraint table="64" name="pk_gcmgcr_c1" type="PrimKey">
+<ConstraintColumn id="65"/>
+</Constraint>
+<Constraint table="70" name="pk_gcmgcl_c1" type="PrimKey">
+<ConstraintColumn id="71"/>
+</Constraint>
+<Constraint table="70" name="uix_gcmgcl_c3" type="Unique">
+<ConstraintColumn id="73"/>
+</Constraint>
+<Constraint table="75" name="pk_gcmgcr_c1" type="PrimKey">
+<ConstraintColumn id="76"/>
+</Constraint>
+<Constraint table="75" name="uix_gcmgcr_c2" type="Unique">
+<ConstraintColumn id="77"/>
+</Constraint>
+<Constraint table="82" name="pk_gcmgcsa_c1" type="PrimKey">
+<ConstraintColumn id="83"/>
+</Constraint>
+<Constraint table="88" name="pk_ogcodtgsa_c1" type="PrimKey">
+<ConstraintColumn id="89"/>
+</Constraint>
+<Constraint table="92" name="pk_ogcgbd_c1" type="PrimKey">
+<ConstraintColumn id="93"/>
+</Constraint>
+<Constraint table="100" name="pk_ogcegr_c1" type="PrimKey">
+<ConstraintColumn id="101"/>
+</Constraint>
+<Constraint table="105" name="pk_ogcegjr_c1" type="PrimKey">
+<ConstraintColumn id="106"/>
+</Constraint>
+<Constraint table="110" name="pk_ogcegjr_c1_1" type="PrimKey">
+<ConstraintColumn id="111"/>
+</Constraint>
+<Constraint table="115" name="pk_ogcodtr_c1" type="PrimKey">
+<ConstraintColumn id="116"/>
+</Constraint>
+<Constraint table="120" name="pk_ogcsar_c1" type="PrimKey">
+<ConstraintColumn id="121"/>
+</Constraint>
+<Constraint table="125" name="pk_ogcodtd_c1" type="PrimKey">
+<ConstraintColumn id="126"/>
+</Constraint>
+<Constraint table="130" name="pk_ogcsad_c1" type="PrimKey">
+<ConstraintColumn id="131"/>
+</Constraint>
+<Constraint table="135" name="pk_ogced_c1" type="PrimKey">
+<ConstraintColumn id="136"/>
+</Constraint>
+<Constraint table="140" name="pk_ogcejd_c1" type="PrimKey">
+<ConstraintColumn id="141"/>
+</Constraint>
+<Constraint table="145" name="pk_ogcegd_c1" type="PrimKey">
+<ConstraintColumn id="146"/>
+</Constraint>
+<Sheet name="Untitled 1" id="197" disp_at="true" disp_ph="true" disp_co="true" disp_rn="true">
+<Place id="165" visible="true">500,0,0,0</Place>
+<Place id="100" visible="true">3941,912,282,102</Place>
+<Place id="157" visible="true">500,0,0,0</Place>
+<Place id="46" visible="true">3683,696,326,81</Place>
+<Place id="164" visible="true">500,0,0,0</Place>
+<Place id="177" visible="true">500,0,0,0</Place>
+<Place id="169" visible="true">500,0,0,0</Place>
+<Place id="0" visible="true">1904,0,301,111</Place>
+<Place id="57" visible="true">2376,430,381,131</Place>
+<Place id="64" visible="true">1901,229,362,112</Place>
+<Place id="196" visible="true">500,0,0,0</Place>
+<Place id="187" visible="true">500,0,0,0</Place>
+<Place id="10" visible="true">1135,455,271,81</Place>
+<Place id="32" visible="true">2451,696,250,80</Place>
+<Place id="75" visible="true">2800,671,351,130</Place>
+<Place id="155" visible="true">500,0,0,0</Place>
+<Place id="175" visible="true">500,0,0,0</Place>
+<Place id="193" visible="true">500,0,0,0</Place>
+<Place id="194" visible="true">500,0,0,0</Place>
+<Place id="184" visible="true">500,0,0,0</Place>
+<Place id="28" visible="true">2857,455,261,81</Place>
+<Place id="176" visible="true">500,0,0,0</Place>
+<Place id="135" visible="true">2037,913,252,100</Place>
+<Place id="36" visible="true">3529,439,281,112</Place>
+<Place id="192" visible="true">500,0,0,0</Place>
+<Place id="174" visible="true">500,0,0,0</Place>
+<Place id="88" visible="true">831,922,401,81</Place>
+<Place id="172" visible="true">500,0,0,0</Place>
+<Place id="191" visible="true">500,0,0,0</Place>
+<Place id="24" visible="true">401,922,331,81</Place>
+<Place id="160" visible="true">500,0,0,0</Place>
+<Place id="20" visible="true">3218,455,211,81</Place>
+<Place id="42" visible="true">3251,696,331,80</Place>
+<Place id="162" visible="true">500,0,0,0</Place>
+<Place id="163" visible="true">500,0,0,0</Place>
+<Place id="51" visible="true">2363,211,402,119</Place>
+<Place id="168" visible="true">500,0,0,0</Place>
+<Place id="181" visible="true">500,0,0,0</Place>
+<Place id="82" visible="true">1347,681,381,111</Place>
+<Place id="92" visible="true">1829,661,422,151</Place>
+<Place id="150" visible="true">500,0,0,0</Place>
+<Place id="105" visible="true">3559,913,282,100</Place>
+<Place id="14" visible="true">736,676,411,121</Place>
+<Place id="183" visible="true">500,0,0,0</Place>
+<Place id="151" visible="true">500,0,0,0</Place>
+<Place id="188" visible="true">500,0,0,0</Place>
+<Place id="178" visible="true">500,0,0,0</Place>
+<Place id="154" visible="true">500,0,0,0</Place>
+<Place id="189" visible="true">500,0,0,0</Place>
+<Place id="166" visible="true">500,0,0,0</Place>
+<Place id="140" visible="true">2389,913,252,100</Place>
+<Place id="70" visible="true">1887,445,389,101</Place>
+<Place id="182" visible="true">500,0,0,0</Place>
+<Place id="158" visible="true">500,0,0,0</Place>
+<Place id="161" visible="true">500,0,0,0</Place>
+<Place id="156" visible="true">500,0,0,0</Place>
+<Place id="167" visible="true">500,0,0,0</Place>
+<Place id="170" visible="true">500,0,0,0</Place>
+<Place id="195" visible="true">500,0,0,0</Place>
+<Place id="130" visible="true">1685,913,252,100</Place>
+<Place id="173" visible="true">500,0,0,0</Place>
+<Place id="145" visible="true">2791,913,252,100</Place>
+<Place id="185" visible="true">500,0,0,0</Place>
+<Place id="190" visible="true">500,0,0,0</Place>
+<Place id="110" visible="true">4705,912,282,102</Place>
+<Place id="6" visible="true">1506,455,281,81</Place>
+<Place id="179" visible="true">500,0,0,0</Place>
+<Place id="153" visible="true">500,0,0,0</Place>
+<Place id="159" visible="true">500,0,0,0</Place>
+<Place id="180" visible="true">500,0,0,0</Place>
+<Place id="125" visible="true">1295,913,327,100</Place>
+<Place id="120" visible="true">4323,913,282,100</Place>
+<Place id="186" visible="true">500,0,0,0</Place>
+<Place id="152" visible="true">500,0,0,0</Place>
+<Place id="115" visible="true">3142,913,351,100</Place>
+<Place id="171" visible="true">500,0,0,0</Place>
+</Sheet>
+<Settings sheet="197" zoom="0.6815848979682657"/>
+</Diagram>

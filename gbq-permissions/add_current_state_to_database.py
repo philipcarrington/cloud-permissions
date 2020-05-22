@@ -74,6 +74,9 @@ def add_project_google_big_query_exisitng_to_database(in_project_name):
         dataset_info = get_datasets_information(in_project_name, dataset_name)
         # Extract the data from the information:
         dataset_resource_type = get_dataset_resource_type_str(dataset_info)
+
+        print(dataset_resource_type)
+
         dataset_project = get_dataset_project_str(dataset_info)
         dataset_id = get_dataset_id_str(dataset_info)
         dataset_creation_time = get_dataset_creation_time_int(dataset_info)
