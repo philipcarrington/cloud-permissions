@@ -61,7 +61,12 @@ GO
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Organisation Department Teams:
-
+select *
+from organisation_department_teams
+go
+select *
+from teams t, organisations o, departments d
+go
 INSERT INTO organisation_department_teams(
     -- organisation_department_team_id, 
     organisation_id, 
@@ -113,8 +118,8 @@ INSERT INTO `groups`(
     group_suffix
 ) 
 VALUES
-    ('Senior', '', 'seni', ''),
-    ('admin', '', 'admn', '')
+    ('Senior', '', 'tech', NULL),
+    ('Admin', '', 'admin', NULL)
 GO
 
 --------------------------------------------------------------------------------
@@ -137,8 +142,54 @@ GO
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Employee Jobs:
+-- Google Cloud Service Accounts:
 
+
+INSERT INTO google_cloud_service_accounts(
+    -- google_cloud_service_account_id, 
+    google_cloud_service_account_email, 
+    google_cloud_service_account_name, 
+    google_cloud_service_account_status, 
+    google_cloud_service_account_description
+) 
+VALUES
+    ('test-595@philc-permissions-meta.iam.gserviceaccount.com', 'permissions Test Account', 1, 'Testing Stuff out')
+GO
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Organisation Department Team Jobs:
+select *
+from organisation_department_teams odt, employees e
+go
+select *
+from organisation_department_team_employees
+go
+
+INSERT INTO organisation_department_team_employees(
+    -- organisation_department_team_employee_id, 
+    organisation_department_team_id, 
+    employee_id
+) 
+select odt.organisation_department_team_id,
+       e.employee_id
+from organisation_department_teams odt, employees e
+where ((e.employee_id = 1) and (odt.organisation_department_team_id = 1))
+    or ((e.employee_id = 2) and (odt.organisation_department_team_id = 2))
+    or ((e.employee_id = 3) and (odt.organisation_department_team_id = 5))
+    or ((e.employee_id = 4) and (odt.organisation_department_team_id = 1))
+    or ((e.employee_id = 5) and (odt.organisation_department_team_id = 4))
+go
+
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Employee Jobs:
+select *
+from jobs j, employees e
+go
+select *
+from employee_jobs
+go
 INSERT INTO employee_jobs(
     -- employee_job_id, 
     employee_id, 
@@ -147,18 +198,22 @@ INSERT INTO employee_jobs(
 select e.employee_id,
        j.job_id
 from jobs j, employees e
-where (j.job_id = 3 and e.employee_id = 1)
-    or (j.job_id = 9 and e.employee_id = 2)
-    or (j.job_id = 10 and e.employee_id = 3)
-    or (j.job_id = 2 and e.employee_id = 4)
-    or (j.job_id = 5 and e.employee_id = 5)
+where (j.job_name = 'Senior Data Engineer' and concat(e.given_name, e.family_name) = 'PhilipCarrington')
+    or (j.job_name = 'Data Scientist' and concat(e.given_name, e.family_name) = 'ChristopherKenbright')
+    or (j.job_name = 'Data Engineer' and concat(e.given_name, e.family_name) = 'JamesSmithers')
+    or (j.job_name = 'Web Engineer' and concat(e.given_name, e.family_name) = 'RosieJones')
+    or (j.job_name = 'Data Helpdesk' and concat(e.given_name, e.family_name) = 'SharonWosbee')
 go
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Employee groups:
-
-
+select *
+from employees e, `groups` g
+go
+select *
+from employee_groups
+go
 INSERT INTO employee_groups(
      -- employee_group_id,
      employee_id, 
@@ -167,26 +222,163 @@ INSERT INTO employee_groups(
 select e.employee_id,
        g.group_id
 from employees e, `groups` g
-where (g.group_id = 7 and e.employee_id = 1)
-    or (g.group_id = 7 and e.employee_id = 2)    
-    or (g.group_id = 8 and e.employee_id = 3)
+where (g.group_name = 'Senior' and concat(e.given_name, e.family_name) = 'PhilipCarrington')
+    or (g.group_name = 'Senior' and concat(e.given_name, e.family_name) = 'ChristopherKenbright')    
+    or (g.group_name = 'admin' and concat(e.given_name, e.family_name) = 'SharonWosbee')
 go  
   
-  
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Folders:
+INSERT INTO google_cloud_folders(
+    -- google_cloud_folder_id, 
+    organisation_id, 
+    google_cloud_folder_parent_folder_id, 
+    google_cloud_folder_name, 
+    google_cloud_folder_short_description
+) 
+
+select organisation_id,
+       0,
+       'Production',
+       'All the Production projects go in here'
+from organisations o 
+union
+select organisation_id,
+       0,
+       'Development',
+       'All the Development projects go in here'
+from organisations o 
+union
+select organisation_id,
+       0,
+       'Testing',
+       'All the Testing projects go in here'
+from organisations o 
+go
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Projects:
+INSERT INTO google_cloud_projects(
+    -- google_cloud_project_id, 
+    google_cloud_folder_id, 
+    google_cloud_project_name, 
+    google_cloud_project_id_actual, 
+    google_cloud_project_number, 
+    google_cloud_project_short_description
+) 
+select  gcf.google_cloud_folder_id,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_name,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_id_actual,
+       12312412412 as google_cloud_project_number,
+       concat('The ', gcf.google_cloud_folder_name, ' for ', o.organisation_name) as google_cloud_project_short_description
+from google_cloud_folders gcf, organisations o
+where gcf.google_cloud_folder_name = 'Production'
+union
+select  gcf.google_cloud_folder_id,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_name,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_id_actual,
+       12312412410 as google_cloud_project_number,
+       concat('The ', gcf.google_cloud_folder_name, ' for ', o.organisation_name) as google_cloud_project_short_description
+from google_cloud_folders gcf, organisations o
+where gcf.google_cloud_folder_name = 'Development'
+union
+select  gcf.google_cloud_folder_id,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_name,
+       concat(o.organisation_identifier, '-', lower(gcf.google_cloud_folder_name)) as google_cloud_project_id_actual,
+       12312412419 as google_cloud_project_number,
+       concat('The ', gcf.google_cloud_folder_name, ' for ', o.organisation_name) as google_cloud_project_short_description
+from google_cloud_folders gcf, organisations o
+where gcf.google_cloud_folder_name = 'Testing'
+go
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Organisation Department Team resources:
+select *
+from organisation_department_team_resources
+go
+select *
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, organisation_department_teams odt, google_cloud_projects gcp, google_cloud_locations gcl
+go
 
 INSERT INTO organisation_department_team_resources(
     -- organisation_department_team_resource_id, 
     google_cloud_resource_type_id, 
     google_cloud_role_id, 
-    organisation_department_team_id
+    organisation_department_team_id,
+    google_cloud_project_id,
+    google_cloud_location_id
 ) 
-VALUES
-    (0, 0, 0)
-GO
-
+select gcrt.google_cloud_resource_type_id,
+       gcr.google_cloud_role_id,
+       odt.organisation_department_team_id,
+       gcp.google_cloud_project_id
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, organisation_department_teams odt, google_cloud_projects gcp, google_cloud_locations gcl
+where (odt.organisation_department_team_id in (1,2,3,4) and gcr.google_cloud_role_id = 3)
+go
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Job resources:
+INSERT INTO job_resources(
+    -- employee_job_resource_id, 
+    google_cloud_resource_type_id, 
+    google_cloud_role_id, 
+    job_id,
+    google_cloud_project_id,
+    google_cloud_location_id
+) 
+select gcrt.google_cloud_resource_type_id,
+       gcr.google_cloud_role_id,
+       j.job_id,
+       gcp.google_cloud_project_id
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, jobs j, google_cloud_projects gcp, google_cloud_locations gcl
+where (j.job_id in (1,2,3,5,6,7,8) and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production')
+go
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Group resources:
 select *
-from google_cloud_resource_types gcrt, google_cloud_roles gcr, organisation_department_teams odt
+from group_resources
+go
+select *
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, `groups` g, google_cloud_locations gcl,google_cloud_projects gcp
+go
+INSERT INTO group_resources(
+--    employee_group_resource_id, 
+    google_cloud_resource_type_id, 
+    google_cloud_role_id, 
+    group_id,
+    google_cloud_project_id,
+    google_cloud_location_id
+) 
+select gcrt.google_cloud_resource_type_id,
+       gcr.google_cloud_role_id,
+       g.group_id,
+       gcp.google_cloud_project_id
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, `groups` g, google_cloud_projects gcp, google_cloud_locations gcl
+where (g.group_name = 'Senior' and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production' and gcl.google_cloud_location_id = 24)
+go
 
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Google cloud service accounts resources:
+
+INSERT INTO google_cloud_service_account_resources(
+    -- service_account_resource_id, 
+    google_cloud_resource_type_id, 
+    google_cloud_role_id, 
+    google_cloud_service_account_id,
+    google_cloud_project_id,
+    google_cloud_location_id
+) 
+select gcrt.google_cloud_resource_type_id,
+       gcr.google_cloud_role_id,
+       gcsa.google_cloud_service_account_id,
+       gcp.google_cloud_project_id
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, google_cloud_service_accounts gcsa, google_cloud_projects gcp, google_cloud_locations gcl
+where (gcsa.google_cloud_service_account_id = 1 and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production')
+go
