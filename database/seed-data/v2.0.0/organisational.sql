@@ -316,9 +316,10 @@ INSERT INTO organisation_department_team_resources(
 select gcrt.google_cloud_resource_type_id,
        gcr.google_cloud_role_id,
        odt.organisation_department_team_id,
-       gcp.google_cloud_project_id
+       gcp.google_cloud_project_id,
+       gcl.google_cloud_location_id
 from google_cloud_resource_types gcrt, google_cloud_roles gcr, organisation_department_teams odt, google_cloud_projects gcp, google_cloud_locations gcl
-where (odt.organisation_department_team_id in (1,2,3,4) and gcr.google_cloud_role_id = 3)
+where (odt.organisation_department_team_id in (1,2,3,4) and gcr.google_cloud_role_id = 3 and gcl.google_cloud_location_name = 'EU')
 go
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -334,9 +335,10 @@ INSERT INTO job_resources(
 select gcrt.google_cloud_resource_type_id,
        gcr.google_cloud_role_id,
        j.job_id,
-       gcp.google_cloud_project_id
+       gcp.google_cloud_project_id,
+       gcl.google_cloud_location_id
 from google_cloud_resource_types gcrt, google_cloud_roles gcr, jobs j, google_cloud_projects gcp, google_cloud_locations gcl
-where (j.job_id in (1,2,3,5,6,7,8) and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production')
+where (j.job_id in (1,2,3,5,6,7,8) and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production'  and gcl.google_cloud_location_name = 'EU')
 go
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -358,9 +360,10 @@ INSERT INTO group_resources(
 select gcrt.google_cloud_resource_type_id,
        gcr.google_cloud_role_id,
        g.group_id,
-       gcp.google_cloud_project_id
+       gcp.google_cloud_project_id,
+       gcl.google_cloud_location_id
 from google_cloud_resource_types gcrt, google_cloud_roles gcr, `groups` g, google_cloud_projects gcp, google_cloud_locations gcl
-where (g.group_name = 'Senior' and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production' and gcl.google_cloud_location_id = 24)
+where (g.group_name = 'Senior' and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production'  and gcl.google_cloud_location_name = 'EU')
 go
 
 --------------------------------------------------------------------------------
@@ -378,7 +381,8 @@ INSERT INTO google_cloud_service_account_resources(
 select gcrt.google_cloud_resource_type_id,
        gcr.google_cloud_role_id,
        gcsa.google_cloud_service_account_id,
-       gcp.google_cloud_project_id
+       gcp.google_cloud_project_id,
+       gcl.google_cloud_location_id
 from google_cloud_resource_types gcrt, google_cloud_roles gcr, google_cloud_service_accounts gcsa, google_cloud_projects gcp, google_cloud_locations gcl
-where (gcsa.google_cloud_service_account_id = 1 and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production')
+where (gcsa.google_cloud_service_account_id = 1 and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production' and gcl.google_cloud_location_name = 'EU')
 go
