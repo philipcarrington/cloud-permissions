@@ -155,6 +155,26 @@ INSERT INTO google_cloud_service_accounts(
 VALUES
     ('test-595@philc-permissions-meta.iam.gserviceaccount.com', 'permissions Test Account', 1, 'Testing Stuff out')
 GO
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Organisation Department Team service accounts:
+
+
+INSERT INTO organisation_department_team_google_service_accounts(
+    -- organisation_department_team_google_service_account_id, 
+    organisation_department_team_id, 
+    google_service_account_id
+) 
+select odt.organisation_department_team_id,
+       gcsa.google_cloud_service_account_id
+from organisation_department_teams odt, google_cloud_service_accounts gcsa
+where odt.organisation_department_team_id = 1
+
+go
+
+
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Organisation Department Team Jobs:
@@ -368,14 +388,35 @@ go
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
--- Google cloud service accounts resources:
+-- Employee Resources:
+
+INSERT INTO employee_resources(
+    -- employee_resource_id, 
+    google_cloud_resource_type_id, 
+    google_cloud_role_id, 
+    employee_id, 
+    google_cloud_project_id, 
+    google_cloud_location_id
+) 
+select gcrt.google_cloud_resource_type_id,
+       gcr.google_cloud_role_id,
+       e.employee_id,
+       gcp.google_cloud_project_id,
+       gcl.google_cloud_location_id
+from google_cloud_resource_types gcrt, google_cloud_roles gcr, employees e, google_cloud_projects gcp, google_cloud_locations gcl
+where (e.employee_id in (2, 1, 4)  and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production' and gcl.google_cloud_location_name = 'EU')
+go
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Service Account Resources:
 
 INSERT INTO google_cloud_service_account_resources(
     -- service_account_resource_id, 
     google_cloud_resource_type_id, 
     google_cloud_role_id, 
-    google_cloud_service_account_id,
-    google_cloud_project_id,
+    google_cloud_service_account_id, 
+    google_cloud_project_id, 
     google_cloud_location_id
 ) 
 select gcrt.google_cloud_resource_type_id,
@@ -384,5 +425,11 @@ select gcrt.google_cloud_resource_type_id,
        gcp.google_cloud_project_id,
        gcl.google_cloud_location_id
 from google_cloud_resource_types gcrt, google_cloud_roles gcr, google_cloud_service_accounts gcsa, google_cloud_projects gcp, google_cloud_locations gcl
-where (gcsa.google_cloud_service_account_id = 1 and gcr.google_cloud_role_id = 3 and gcp.google_cloud_project_name = 'csuk-production' and gcl.google_cloud_location_name = 'EU')
-go
+where (
+        gcsa.google_cloud_service_account_id in (1)  
+            and gcr.google_cloud_role_id = 3 
+            and gcp.google_cloud_project_name = 'csuk-production' 
+            and gcl.google_cloud_location_name = 'EU'
+      )
+        
+
