@@ -164,7 +164,7 @@ GO
 INSERT INTO organisation_department_team_google_service_accounts(
     -- organisation_department_team_google_service_account_id, 
     organisation_department_team_id, 
-    google_service_account_id
+    google_cloud_service_account_id
 ) 
 select odt.organisation_department_team_id,
        gcsa.google_cloud_service_account_id
@@ -258,7 +258,6 @@ INSERT INTO google_cloud_folders(
     google_cloud_folder_name, 
     google_cloud_folder_short_description
 ) 
-
 select organisation_id,
        0,
        'Production',
