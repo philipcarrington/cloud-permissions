@@ -1,3 +1,59 @@
+DROP INDEX `uix_odd_c2` ON `departments`
+GO
+DROP INDEX `uix_ogced_c2c3c4` ON `employee_datasets`
+GO
+DROP INDEX `uix_odeg_c2c3` ON `employee_groups`
+GO
+DROP INDEX `uix_odejc2c3` ON `employee_jobs`
+GO
+DROP INDEX `uix_ogcegr_c2c3c4_2` ON `employee_resources`
+GO
+DROP INDEX `uix_ode_c2c3` ON `employees`
+GO
+DROP INDEX `uix_ogcgbd_c2c4` ON `google_bigquery_datasets`
+GO
+DROP INDEX `uix_ogcgbd_c2c4_1` ON `google_bigquery_datasets`
+GO
+DROP INDEX `uix_ogcgcp_c3` ON `google_cloud_projects`
+GO
+DROP INDEX `uix_gcmgcr_c2` ON `google_cloud_regions`
+GO
+DROP INDEX `uix_gcmrt_c2c3` ON `google_cloud_resource_types`
+GO
+DROP INDEX `uix_ogcsar_c2c3c4` ON `google_cloud_service_account_resources`
+GO
+DROP INDEX `uix_gcmgcsa_c2` ON `google_cloud_service_accounts`
+GO
+DROP INDEX `uix_ogcegd_c2c3c4` ON `group_datasets`
+GO
+DROP INDEX `uix_ogcegr_c2c3c4c5` ON `group_resources`
+GO
+DROP INDEX `uix_odg_c2` ON `groups`
+GO
+DROP INDEX `uix_ogcejd_c2c3c4_2` ON `job_datasets`
+GO
+DROP INDEX `uix_ogcegr_c2c3c4_1` ON `job_resources`
+GO
+DROP INDEX `uix_odj_c2` ON `jobs`
+GO
+DROP INDEX `uix_ogcodtd_c2c3c4` ON `organisation_department_team_datasets`
+GO
+DROP INDEX `uix_ododte_c2c3` ON `organisation_department_team_employees`
+GO
+DROP INDEX `uix_ogcodtgsa_c2c3` ON `organisation_department_team_google_service_accounts`
+GO
+DROP INDEX `uix_ogcodtr_c2c3c4` ON `organisation_department_team_resources`
+GO
+DROP INDEX `uix_ododt_c2c3c4` ON `organisation_department_teams`
+GO
+DROP INDEX `uix_odo_c2` ON `organisations`
+GO
+DROP INDEX `uix_odo_c4` ON `organisations`
+GO
+DROP INDEX `uix_ogcsad_c2c3c4` ON `service_account_datasets`
+GO
+DROP INDEX `uix_odt_c2` ON `teams`
+GO
 ALTER TABLE `employee_datasets`
 	DROP FOREIGN KEY `REL_16`
 GO
@@ -39,9 +95,6 @@ ALTER TABLE `google_bigquery_datasets`
 GO
 ALTER TABLE `google_bigquery_datasets`
 	DROP FOREIGN KEY `fk_gcmgcl_c1_to_ogcgbd_c3`
-GO
-ALTER TABLE `google_cloud_folders`
-	DROP FOREIGN KEY `fk_ogcgcf_c1_to_ogcgcf_c3`
 GO
 ALTER TABLE `google_cloud_folders`
 	DROP FOREIGN KEY `fk_odo_c1_to_ogcgcf_c2`
@@ -189,6 +242,8 @@ DROP TABLE IF EXISTS `employees`
 GO
 DROP TABLE IF EXISTS `google_bigquery_datasets`
 GO
+DROP TABLE IF EXISTS `google_bigquery_datasets`
+GO
 DROP TABLE IF EXISTS `google_cloud_folders`
 GO
 DROP TABLE IF EXISTS `google_cloud_locations`
@@ -280,6 +335,17 @@ CREATE TABLE `employees`  (
 )
 GO
 CREATE TABLE `google_bigquery_datasets`  (
+	`google_bigquery_dataset_id`                          	int AUTO_INCREMENT NOT NULL,
+	`google_cloud_project_id`                             	int NOT NULL,
+	`google_cloud_location_id`                            	int NOT NULL,
+	`google_bigquery_dataset_name`                        	varchar(255) NOT NULL,
+	`google_bigquery_dataset_short_description`           	varchar(500) NULL,
+	`google_bigquery_dataset_default_table_expiration`    	smallint NOT NULL DEFAULT '0',
+	`google_bigquery_dataset_default_partition_expiration`	smallint NOT NULL DEFAULT '0',
+	PRIMARY KEY(`google_bigquery_dataset_id`)
+)
+GO
+CREATE TABLE `google_bigquery_datasets`  (
 	`google_bigquery_dataset_id`                          	int NOT NULL,
 	`google_cloud_project_id`                             	int NOT NULL,
 	`google_cloud_location_id`                            	int NOT NULL,
@@ -287,6 +353,9 @@ CREATE TABLE `google_bigquery_datasets`  (
 	`google_bigquery_dataset_short_description`           	varchar(500) NULL,
 	`google_bigquery_dataset_default_table_expiration`    	smallint NOT NULL DEFAULT '0',
 	`google_bigquery_dataset_default_partition_expiration`	smallint NOT NULL DEFAULT '0',
+	`google_bigquery_dataset_history_action`              	smallint NOT NULL,
+	`google_bigquery_dataset_history_datetime`            	datetime NOT NULL,
+	`google_bigquery_dataset_history_user`                	varchar(100) NOT NULL,
 	PRIMARY KEY(`google_bigquery_dataset_id`)
 )
 GO
@@ -559,11 +628,6 @@ ALTER TABLE `google_bigquery_datasets`
 	REFERENCES `google_cloud_locations`(`google_cloud_location_id`)
 GO
 ALTER TABLE `google_cloud_folders`
-	ADD CONSTRAINT `fk_ogcgcf_c1_to_ogcgcf_c3`
-	FOREIGN KEY(`google_cloud_folder_parent_folder_id`)
-	REFERENCES `google_cloud_folders`(`google_cloud_folder_id`)
-GO
-ALTER TABLE `google_cloud_folders`
 	ADD CONSTRAINT `fk_odo_c1_to_ogcgcf_c2`
 	FOREIGN KEY(`organisation_id`)
 	REFERENCES `organisations`(`organisation_id`)
@@ -773,4 +837,88 @@ ALTER TABLE `service_account_datasets`
 	ADD CONSTRAINT `REL_9`
 	FOREIGN KEY(`google_bigquery_dataset_id`)
 	REFERENCES `google_bigquery_datasets`(`google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_odd_c2`
+	ON `departments`(`department_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogced_c2c3c4`
+	ON `employee_datasets`(`employee_id`, `google_cloud_role_id`, `google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_odeg_c2c3`
+	ON `employee_groups`(`employee_id`, `group_id`)
+GO
+CREATE UNIQUE INDEX `uix_odejc2c3`
+	ON `employee_jobs`(`employee_id`, `job_id`)
+GO
+CREATE UNIQUE INDEX `uix_ogcegr_c2c3c4_2`
+	ON `employee_resources`(`google_cloud_resource_type_id`, `google_cloud_role_id`, `employee_id`, `google_cloud_project_id`, `google_cloud_location_id`)
+GO
+CREATE UNIQUE INDEX `uix_ode_c2c3`
+	ON `employees`(`given_name`, `family_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcgbd_c2c4`
+	ON `google_bigquery_datasets`(`google_cloud_project_id`, `google_bigquery_dataset_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcgbd_c2c4_1`
+	ON `google_bigquery_datasets`(`google_cloud_project_id`, `google_bigquery_dataset_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcgcp_c3`
+	ON `google_cloud_projects`(`google_cloud_project_name`)
+GO
+CREATE UNIQUE INDEX `uix_gcmgcr_c2`
+	ON `google_cloud_regions`(`google_cloud_region_name`)
+GO
+CREATE UNIQUE INDEX `uix_gcmrt_c2c3`
+	ON `google_cloud_resource_types`(`google_cloud_resource_type_service`, `google_cloud_resource_type_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcsar_c2c3c4`
+	ON `google_cloud_service_account_resources`(`google_cloud_resource_type_id`, `google_cloud_role_id`, `google_cloud_service_account_id`, `google_cloud_project_id`, `google_cloud_location_id` DESC)
+GO
+CREATE UNIQUE INDEX `uix_gcmgcsa_c2`
+	ON `google_cloud_service_accounts`(`google_cloud_service_account_email`)
+GO
+CREATE UNIQUE INDEX `uix_ogcegd_c2c3c4`
+	ON `group_datasets`(`group_id`, `google_cloud_role_id`, `google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_ogcegr_c2c3c4c5`
+	ON `group_resources`(`google_cloud_resource_type_id`, `google_cloud_role_id`, `group_id`, `google_cloud_project_id`, `google_cloud_location_id`)
+GO
+CREATE UNIQUE INDEX `uix_odg_c2`
+	ON `groups`(`group_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcejd_c2c3c4_2`
+	ON `job_datasets`(`job_id`, `google_cloud_role_id`, `google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_ogcegr_c2c3c4_1`
+	ON `job_resources`(`google_cloud_resource_type_id`, `google_cloud_role_id`, `job_id`, `google_cloud_project_id`, `google_cloud_location_id`)
+GO
+CREATE UNIQUE INDEX `uix_odj_c2`
+	ON `jobs`(`job_name`)
+GO
+CREATE UNIQUE INDEX `uix_ogcodtd_c2c3c4`
+	ON `organisation_department_team_datasets`(`organisation_department_team_id`, `google_cloud_role_id`, `google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_ododte_c2c3`
+	ON `organisation_department_team_employees`(`organisation_department_team_id`, `employee_id`)
+GO
+CREATE UNIQUE INDEX `uix_ogcodtgsa_c2c3`
+	ON `organisation_department_team_google_service_accounts`(`organisation_department_team_id`, `google_cloud_service_account_id`)
+GO
+CREATE UNIQUE INDEX `uix_ogcodtr_c2c3c4`
+	ON `organisation_department_team_resources`(`google_cloud_resource_type_id`, `google_cloud_role_id`, `organisation_department_team_id`, `google_cloud_project_id`, `google_cloud_location_id`)
+GO
+CREATE UNIQUE INDEX `uix_ododt_c2c3c4`
+	ON `organisation_department_teams`(`organisation_id`, `department_id`, `team_id`)
+GO
+CREATE UNIQUE INDEX `uix_odo_c2`
+	ON `organisations`(`organisation_name`)
+GO
+CREATE UNIQUE INDEX `uix_odo_c4`
+	ON `organisations`(`organisation_identifier`)
+GO
+CREATE UNIQUE INDEX `uix_ogcsad_c2c3c4`
+	ON `service_account_datasets`(`google_cloud_service_account_id`, `google_cloud_role_id`, `google_bigquery_dataset_id`)
+GO
+CREATE UNIQUE INDEX `uix_odt_c2`
+	ON `teams`(`team_name` DESC)
 GO
