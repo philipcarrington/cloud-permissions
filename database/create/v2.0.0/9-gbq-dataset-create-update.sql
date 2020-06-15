@@ -1,3 +1,6 @@
+drop view permissions_meta.gbq_dataset_create_update_commands
+go
+create view permissions_meta.gbq_dataset_create_update_commands as (
 with 
     constants as (
         select '/tmp/' as permissions_file_output_dir
@@ -163,7 +166,7 @@ with
                                     and
                                     (ddb.google_bigquery_dataset_short_description <> '')
                                  ) then
-                                    concat('--description ''', ddb.google_bigquery_dataset_short_description)
+                                    concat('--description ''', ddb.google_bigquery_dataset_short_description, '''')
                             else
                                 concat('--description ''', 'No Description at this time', '''')
                        end as dataset_description_command_part                                               
@@ -273,5 +276,6 @@ from dataset_data dd
     left join dataset_permissions_grouped dpg
         on dd.internal_google_cloud_project_id = dpg.internal_google_cloud_project_id
             and dd.internal_google_bigquery_dataset_id = dpg.internal_google_bigquery_dataset_id
+)            
                            
             

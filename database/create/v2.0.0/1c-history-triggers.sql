@@ -1,6 +1,8 @@
 /*
     Stored procedure to normalise the action of the INSERT and UPDATE trigger
 */
+drop procedure permissions_meta.add_permissions_history_google_bigquery_datasets
+go
 create procedure permissions_meta.add_permissions_history_google_bigquery_datasets(
     in_google_bigquery_dataset_id                                  int,
 	in_google_cloud_project_id                                     int,
@@ -9,7 +11,7 @@ create procedure permissions_meta.add_permissions_history_google_bigquery_datase
 	in_google_bigquery_dataset_short_description                   varchar(500),
 	in_google_bigquery_dataset_default_table_expiration            smallint,
 	in_google_bigquery_dataset_default_partition_expiration        smallint,
-	in_google_bigquery_dataset_history_action                      smallint,
+	in_google_bigquery_dataset_history_action_id                   smallint,
 	in_google_bigquery_dataset_history_datetime                    datetime,
 	in_google_bigquery_dataset_history_user                        varchar(255)
 )
@@ -22,7 +24,7 @@ begin
         google_bigquery_dataset_short_description,
         google_bigquery_dataset_default_table_expiration,
         google_bigquery_dataset_default_partition_expiration,
-        google_bigquery_dataset_history_action,
+        google_bigquery_dataset_history_action_id,
         google_bigquery_dataset_history_datetime,
         google_bigquery_dataset_history_user
     )
@@ -34,7 +36,7 @@ begin
         in_google_bigquery_dataset_short_description,
         in_google_bigquery_dataset_default_table_expiration,
         in_google_bigquery_dataset_default_partition_expiration,
-        in_google_bigquery_dataset_history_action,
+        in_google_bigquery_dataset_history_action_id,
         in_google_bigquery_dataset_history_datetime,
         in_google_bigquery_dataset_history_user
     );
@@ -45,6 +47,8 @@ go
     INSERT trigger
     ----------------------------------------------------------------------------
 */
+drop trigger permissions_meta.after_insert_google_bigquery_datasets
+go
 create trigger permissions_meta.after_insert_google_bigquery_datasets
 after insert 
 on permissions_meta.google_bigquery_datasets
@@ -78,6 +82,8 @@ go
     UPDATE trigger
     ----------------------------------------------------------------------------
 */
+drop trigger permissions_meta.after_update_google_bigquery_datasets
+go
 create trigger permissions_meta.after_update_google_bigquery_datasets
 after update 
 on permissions_meta.google_bigquery_datasets

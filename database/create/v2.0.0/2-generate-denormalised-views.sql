@@ -4,10 +4,11 @@
 -- Found here: https://stackoverflow.com/questions/8672815/mysql-extract-first-letter-of-each-word-in-a-specific-column
 -------------------------------------------------------------------------------
 
-set global log_bin_trust_function_creators = 1$$
+set global log_bin_trust_function_creators = 1
+go
 
-drop function if exists `initials`$$
-
+drop function if exists `initials`
+go
 create function `initials`(str varchar(64), expr varchar(64)) RETURNS varchar(64) CHARSET utf8
 begin
     declare result varchar(64) default '';
@@ -32,16 +33,20 @@ begin
         end if;
     end while;
     return result;
-end$$
+end
+go
 
-drop function if exists `acronym`$$
 
+drop function if exists `acronym`
+go
 CREATE FUNCTION `acronym`(str varchar(64)) RETURNS varchar(64) CHARSET utf8
 begin
     declare result varchar(64) default '';
     set result = initials( str, '[[:alnum:]]' );
     return result;
-end$$
+end
+go
+
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Create a table to hold a load of meta about the tables:
@@ -59,7 +64,8 @@ go
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Populate the table:
-set @row_number:=0;
+set @row_number:=0
+go
 
 insert into permissions_meta.denormalise_tables_data
 with
@@ -99,19 +105,21 @@ from information_schema.columns isc
 group by twa.table_no,
        twa.table_schema,
        twa.table_name,
-       twa.table_acronym;
+       twa.table_acronym
+go       
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- See what we have got:
 select *
-from permissions_meta.denormalise_tables_data;
-
+from permissions_meta.denormalise_tables_data
+go
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- Create a table to hold all the data:
-drop table permissions_meta.denormalized_view_data;
+drop table permissions_meta.denormalized_view_data
+go
 
 create table permissions_meta.denormalized_view_data (
     orig_table_no               int,
@@ -131,7 +139,8 @@ create table permissions_meta.denormalized_view_data (
     ref_table_alias             varchar(10),
     ref_join_column_name        varchar(255),
     ref_table_columns           varchar(1000)
-);
+)
+go
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -193,13 +202,14 @@ with recursive table_hirearchy as (
                 and kcu2.referenced_table_name = r_dtd.table_name
 )
 select distinct *
-from table_hirearchy;
-
+from table_hirearchy
+go
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- See what we have got:
 select *
-from permissions_meta.denormalized_view_data;
+from permissions_meta.denormalized_view_data
+go
 
 select dvd.level_no,
        dvd.cur_table_no,
@@ -211,13 +221,15 @@ select dvd.level_no,
        dvd.orig_table_no,
        dvd.orig_table_name
 from permissions_meta.denormalized_view_data dvd
-where dvd.orig_table_no = 18;
+where dvd.orig_table_no = 18
+go
 
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 -- See what is in the table:
-set session group_concat_max_len = 1000000;
+set session group_concat_max_len = 1000000
+go
 
 with
     create_view_const as (
@@ -345,4 +357,5 @@ group by vd.drop_view_line,
          vcr.create_view_line_start,
          vc.columns_section,
          vf.from_section,
-         vcr.create_view_line_end;
+         vcr.create_view_line_end
+go

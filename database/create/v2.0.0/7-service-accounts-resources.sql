@@ -21,11 +21,11 @@ create view permissions_meta.service_account_resources_details_bigquery as (
                    ) as google_bigquery_dataset_short_description,
             --------------------------------------------------------
             -- For the service_account_datasets table:
-            odtgsad.odtgsa_google_service_account_id,
+            gcsard.gcsa_google_cloud_service_account_id,
             gcsard.gcr_google_cloud_role_id 
 from permissions_meta.google_cloud_service_account_resources_denorm gcsard
     inner join permissions_meta.organisation_department_team_google_service_accounts_denorm odtgsad
-            on gcsard.gcsar_google_cloud_service_account_id = odtgsad.odtgsa_google_service_account_id
+            on gcsard.gcsar_google_cloud_service_account_id = odtgsad.gcsa_google_cloud_service_account_id
 where gcsard.gcrt_google_cloud_resource_type_name = 'dataset'
     and gcsard.gcrt_google_cloud_resource_type_service = 'bigquery'
 )                                
@@ -64,11 +64,11 @@ go
 -- INSERT - into the group datasets table
 insert into service_account_datasets(
     -- service_account_dataset_id, -- Auto Inc column 
-    service_account_id, 
+    google_cloud_service_account_id, 
     google_cloud_role_id, 
     google_bigquery_dataset_id
 )
-select erdb.odtgsa_google_service_account_id as service_account_id,
+select erdb.gcsa_google_cloud_service_account_id as service_account_id,
        erdb.gcr_google_cloud_role_id as google_cloud_role_id,
        gbd.google_bigquery_dataset_id as google_bigquery_dataset_id
 from permissions_meta.service_account_resources_details_bigquery erdb
