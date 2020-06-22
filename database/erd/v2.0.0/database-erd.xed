@@ -654,14 +654,16 @@
 <Storage name="Engine" value=""/>
 </Table>
 <Table id="176" name="api_dataset_actions" schema="" database="permissions_history" background="16763135">
-<Column id="177" name="api_dataset_action_id" type="int" length="25" nulls="false"/>
+<Column id="177" name="api_dataset_action_id" type="int" length="25" nulls="false">
+<CP name="IDENTITY">YES</CP>
+</Column>
 <Column id="178" name="api_dataset_action_datetime" type="date" length="25" nulls="false"/>
 <Column id="179" name="api_dataset_action_action_id" type="smallint" length="25" nulls="false"/>
-<Column id="180" name="api_dataset_state" type="smallint" length="25" nulls="false"/>
-<Column id="181" name="internal_project_id" type="int" length="25" nulls="false">
+<Column id="180" name="internal_project_id" type="int" length="25" nulls="false">
 <CP name="IDENTITY">NO</CP>
 </Column>
-<Column id="182" name="internal_dataset_id" type="int" length="25" nulls="false"/>
+<Column id="181" name="internal_dataset_id" type="int" length="25" nulls="false"/>
+<Column id="182" name="api_action_state_description" type="varchar" length="500" nulls="true"/>
 <Storage name="ValueCompression" value="false"/>
 <Storage name="DistributeRandom" value="false"/>
 <Storage name="NoLogging" value="false"/>
@@ -1084,7 +1086,6 @@
 <IndexColumn id="179" sequence="1" ascending="true"/>
 <IndexColumn id="180" sequence="2" ascending="true"/>
 <IndexColumn id="181" sequence="3" ascending="true"/>
-<IndexColumn id="182" sequence="4" ascending="true"/>
 </Index>
 <Constraint table="0" name="pk_odo_c1" type="PrimKey">
 <ConstraintColumn id="1"/>
@@ -1278,7 +1279,7 @@
 </Sheet>
 <Sheet name="permissions_history" id="242" disp_at="true" disp_ph="true" disp_co="true" disp_rn="true">
 <Place id="161" visible="true">100,181,400,201</Place>
-<Place id="176" visible="true">549,60,281,201</Place>
+<Place id="176" visible="true">539,50,281,131</Place>
 <Place id="240" visible="true">500,0,0,0</Place>
 <Place id="239" visible="true">500,0,0,0</Place>
 <Place id="172" visible="true">189,0,221,81</Place>

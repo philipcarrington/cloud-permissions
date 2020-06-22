@@ -162,7 +162,7 @@ def create_dataset(
 
 ###############################################################################
 # Permission setting functions:
-def get_permissions(project_name):
+def create_update_datasets(project_name):
     # Get the config file directory for the MySQL connection:
     configs_dir = get_dir_location('configs')
     # Create the MySQL config filepath:
@@ -219,16 +219,24 @@ def get_permissions(project_name):
 
         else:
             # Dataset does not exist create it:
-            print('*************************** CREATING DATASET ******************')
-            create_dataset(
-                dataset_id,
-                google_cloud_location_name,
-                google_bigquery_dataset_default_table_expiration,
-                google_bigquery_dataset_default_partition_expiration,
-                google_bigquery_dataset_short_description
-            )
+            try:
+                create_dataset(
+                    dataset_id,
+                    google_cloud_location_name,
+                    google_bigquery_dataset_default_table_expiration,
+                    google_bigquery_dataset_default_partition_expiration,
+                    google_bigquery_dataset_short_description
+                )
+
+                api_call_logger_message = 'Dataset created'
+            except Error as e:
+                api_call_logger_message = e
+            finally:
+                api_call_logger('Create', internal_google_cloud_project_id, internal_google_bigquery_dataset_id,
+                                api_call_logger_message)
 
 #####################################################
 # Run the Job:
 if __name__ == "__main__":
-    get_permissions('csuk-production')
+    create_update_datasets('csuk-production')
+    update_permissions_on_datasets('csuk-production')
